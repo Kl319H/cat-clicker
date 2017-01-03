@@ -2,8 +2,16 @@
 var clickCount = 0;
 
 var catImage = document.getElementById('cat-img');
+var catImageTwo = document.getElementById('cat-img2');
+var catImageName = "Derrick";
+var catImageTwoName = "Kcirred";
+catImage.innerHTML = catImageName;
+catImageTwo.innerHTML = catImageTwoName;
+
+var catsContainer = document.getElementById('cat-container');
+
 var clickCountDisplay = document.getElementById('click-count');
-catImage.addEventListener('click', function(){
+catsContainer.addEventListener('click', function(){
   clickCount++;
   console.log("clicked cat", clickCount);
   clickCountDisplay.innerHTML=clickCount;
