@@ -36,5 +36,11 @@ $(cats).each(function(index, cat) {
   var li = document.createElement('li');
   $(li).text(cat.name);
   $(li).attr("id", cat.id);
+  var div = document.createElement('div');
+  $(div).text(cat.clicks);
+  $(li).append($(div));
+
   $ul.append($(li));
 });
+
+setCat(0);
