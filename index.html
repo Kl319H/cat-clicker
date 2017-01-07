@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cat Clicker</title>
-    <!--<link rel="stylesheet" href="css/style.css">-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cat Clicker</title>
+  <!--<link rel="stylesheet" href="css/style.css">-->
 </head>
 <body>
 
   <div id="cat-container">
     <h2 id="cat-name"></h2>
-      <img id="cat-img" src="" alt="Image of cat"/>
+    <img id="cat-img" src="" alt="Image of cat"/>
   </div>
 
   <ul id="cat-list">
 
   </ul>
 
-<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/cats.js"></script>
+  <script type="text/template" data-template="cat">
+    <li id="{{id}}">
+      {{name}}
+      <div>
+        {{clicks}}
+      </div>
+    </li>
+  </script>
+
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 
 </body>
 </html>

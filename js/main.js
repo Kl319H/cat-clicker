@@ -1,23 +1,105 @@
+/**
+ * https://github.com/udacity/ud989-pizzamvo was used for reference
+ */
 
-var cat;
-var catNameElem = document.getElementById('cat-name');
-var catImageElem = document.getElementById('cat-img');
-
-var catsContainer = document.getElementById('cat-container');
-catsContainer.addEventListener('click', function(){
-    cat.clicks++;
-    $("#"+cat.id).find("div").text(cat.clicks);
-    console.log("clicked cat", cat);
-}, false);
-
-function setCat(catID) {
-  cat = cats[catID];
-  $(catImageElem).attr("src", cat.image);
-  $(catNameElem).text(cat.name);
-  console.log(cat);
+var catClickerData = {
+	currentCatId: 0,
+	cats: [{
+			id: 0,
+			name: 'Derrick',
+			image: 'images/cat.jpg',
+			clicks: 0
+		},
+		{
+			id: 1,
+			name: 'Derk',
+			image: 'images/cat2.jpg',
+			clicks: 0
+		},
+		{
+			id: 2,
+			name: 'Damage',
+			image: 'images/cat3.jpg',
+			clicks: 0
+		},
+		{
+			id: 3,
+			name: 'DMG',
+			image: 'images/cat4.jpg',
+			clicks: 0
+		},
+		{
+			id: 4,
+			name: 'Babes',
+			image: 'images/cat5.jpg',
+			clicks: 0
+		}
+	]
 };
 
-$("#cat-list").click(function(event) {
-  var catID = event.target.id;
-  setCat(catID);
-});
+
+
+var controller = {
+	init: function() {
+
+		view.init();
+	},
+	/**
+	 * Sets current cat Id
+	 * @param {number} catId
+	 */
+	setCurrentCatId: function(catId) {
+		catClickerData.currentCatId = catId;
+	},
+	getCurrentCat: function() {
+		return catClickerData.cats[catClickerData.currentCatId];
+	},
+	getCats: function() {
+		return catClickerData.cats;
+	},
+	incrementCatClicks: function() {
+		this.getCurrentCat().clicks++;
+	}
+};
+
+var view = {
+	init: function() {
+		var instance = this;
+		instance.catTemplate = $('script[data-template="cat"]').html();
+		instance.$catImage = $('#cat-img');
+		instance.$catName = $('#cat-name');
+		$("#cat-list").click(function(event) {
+			var catId = event.target.id;
+			if (catId) {
+				controller.setCurrentCatId(catId);
+				instance.updateCatContainer();
+			}
+		});
+		$("#cat-container").click(function(event) {
+			controller.incrementCatClicks();
+			var cat = controller.getCurrentCat();
+			$("#" + cat.id).find("div").text(cat.clicks);
+		});
+		instance.render();
+	},
+	render: function() {
+		var $ul = $('#cat-list');
+		var cats = controller.getCats();
+		var catTemplate = this.catTemplate;
+		$(cats).each(function(index, cat) {
+			var template = catTemplate.replace(/{{id}}/g, cat.id)
+				.replace(/{{name}}/g, cat.name)
+				.replace(/{{clicks}}/g, cat.clicks);
+
+			$ul.append($(template));
+		});
+		this.updateCatContainer();
+	},
+	updateCatContainer: function() {
+		var cat = controller.getCurrentCat();
+		this.$catImage.attr("src", cat.image);
+		this.$catName.text(cat.name);
+	}
+};
+
+controller.init();
