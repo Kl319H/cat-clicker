@@ -68,6 +68,7 @@ var view = {
 		instance.catTemplate = $('script[data-template="cat"]').html();
 		instance.$catImage = $('#cat-img');
 		instance.$catName = $('#cat-name');
+		instance.$catClicks = $('#cat-clicks');
 		$("#cat-list").click(function(event) {
 			var catId = event.target.id;
 			if (catId) {
@@ -78,7 +79,7 @@ var view = {
 		$("#cat-container").click(function(event) {
 			controller.incrementCatClicks();
 			var cat = controller.getCurrentCat();
-			$("#" + cat.id).find("div").text(cat.clicks);
+			instance.$catClicks.text(cat.clicks);
 		});
 		instance.render();
 	},
@@ -88,8 +89,7 @@ var view = {
 		var catTemplate = this.catTemplate;
 		$(cats).each(function(index, cat) {
 			var template = catTemplate.replace(/{{id}}/g, cat.id)
-				.replace(/{{name}}/g, cat.name)
-				.replace(/{{clicks}}/g, cat.clicks);
+				.replace(/{{name}}/g, cat.name);
 
 			$ul.append($(template));
 		});
@@ -99,6 +99,7 @@ var view = {
 		var cat = controller.getCurrentCat();
 		this.$catImage.attr("src", cat.image);
 		this.$catName.text(cat.name);
+		this.$catClicks.text(cat.clicks);
 	}
 };
 

@@ -1,0 +1,13 @@
+.container{
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#cat-container{
+  float:left;
+}
+
+#cat-list{
+  float:right;
+}
