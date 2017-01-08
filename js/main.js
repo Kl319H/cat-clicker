@@ -43,6 +43,7 @@ var controller = {
 	init: function() {
 
 		view.init();
+		adminView.init();
 	},
 	/**
 	 * Sets current cat Id
@@ -59,8 +60,16 @@ var controller = {
 	},
 	incrementCatClicks: function() {
 		this.getCurrentCat().clicks++;
+	},
+	updateCat: function(name, image, clicks) {
+		var cat = this.getCurrentCat();
+		cat.name = name;
+		cat.image = image;
+		cat.clicks = clicks;
+		view.updateCatContainer();
 	}
 };
+
 
 var view = {
 	init: function() {

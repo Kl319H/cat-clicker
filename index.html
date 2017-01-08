@@ -5,32 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cat Clicker</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
     <div class="container">
-        <div id="cat-container">
-            <h2 id="cat-name"></h2>
-            <img id="cat-img" src="" height="180" alt="Image of cat" />
-            <div>
-                Clicks: <span id="cat-clicks"></span>
+        <div class="row">
+            <div class="col-md-8">
+
+                <div id="cat-container" class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 id="cat-name" class="panel-title"></h3>
+                    </div>
+                    <div class="panel-body">
+                        <img id="cat-img" src="" height="180" alt="Image of cat" />
+                        <div>
+                            Clicks: <span id="cat-clicks" class="badge"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="cat-list" class="list-group">
+                </div>
             </div>
         </div>
-
-        <ul id="cat-list">
-
-        </ul>
+        <div class="row">
+            <button id="admin-button" type="button" class="btn btn-default form-toggle">Admin</button>
+            <form class="form-horizontal hidden">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input id="name" type="text" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="img-url" class="col-sm-2 control-label">ImgURL</label>
+                    <div class="col-sm-10">
+                        <input id="img-url" type="text" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="clicks" class="col-sm-2 control-label"># Clicks</label>
+                    <div class="col-sm-10">
+                        <input id="clicks" type="number" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button id="cancel-button" type="button" class="btn btn-default form-toggle">Cancel</button>
+                        <button type="submit" class="btn btn-default">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
 
     <script type="text/template" data-template="cat">
-        <li id="{{id}}">
+        <button id="{{id}}" class="list-group-item">
             {{name}}
-        </li>
+        </button>
     </script>
 
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/admin.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 
 </body>
