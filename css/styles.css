@@ -11,3 +11,7 @@
 #cat-list{
   float:right;
 }
+
+.list-group-item{
+    margin-bottom: 0;
+}
